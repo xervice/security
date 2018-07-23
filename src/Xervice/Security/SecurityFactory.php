@@ -8,9 +8,6 @@ use Xervice\Core\Factory\AbstractFactory;
 use Xervice\Security\Business\Provider\SecurityProvider;
 use Xervice\Security\Business\Provider\SecurityProviderInterface;
 
-/**
- * @method \Xervice\Security\SecurityConfig getConfig()
- */
 class SecurityFactory extends AbstractFactory
 {
     /**
