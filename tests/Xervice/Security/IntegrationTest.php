@@ -1,6 +1,9 @@
 <?php
 namespace XerviceTest\Security;
 
+use DataProvider\AuthenticatorDataProvider;
+use DataProvider\SimpleCredentialsDataProvider;
+use DataProvider\TestKeyValueDataProvider;
 use Xervice\Config\XerviceConfig;
 use Xervice\Core\Locator\Dynamic\DynamicLocator;
 use Xervice\Core\Locator\Locator;
