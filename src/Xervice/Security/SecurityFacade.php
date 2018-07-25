@@ -4,6 +4,7 @@
 namespace Xervice\Security;
 
 
+use DataProvider\AuthenticatorDataProvider;
 use Xervice\Core\Facade\AbstractFacade;
 use Xervice\DataProvider\DataProvider\AbstractDataProvider;
 
@@ -14,11 +15,10 @@ class SecurityFacade extends AbstractFacade
 {
     /**
      * @param string $authenticator
-     * @param \Xervice\DataProvider\DataProvider\AbstractDataProvider $dataProvider
+     * @param \DataProvider\AuthenticatorDataProvider $dataProvider
      *
-     * @throws \Xervice\Security\Business\Exception\SecurityException
      */
-    public function authenticate(string $authenticator, AbstractDataProvider $dataProvider): void
+    public function authenticate(string $authenticator, AuthenticatorDataProvider $dataProvider): void
     {
         $this->getFactory()->createSecurityProvider()->authenticate($authenticator, $dataProvider);
     }

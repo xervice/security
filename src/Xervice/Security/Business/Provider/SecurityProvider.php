@@ -4,6 +4,7 @@
 namespace Xervice\Security\Business\Provider;
 
 
+use DataProvider\AuthenticatorDataProvider;
 use Xervice\DataProvider\DataProvider\AbstractDataProvider;
 use Xervice\Security\Business\Authenticator\AuthenticatorInterface;
 use Xervice\Security\Business\Exception\SecurityException;
@@ -61,11 +62,11 @@ class SecurityProvider implements SecurityProviderInterface
 
     /**
      * @param string $name
-     * @param \Xervice\DataProvider\DataProvider\AbstractDataProvider $dataProvider
+     * @param \DataProvider\AuthenticatorDataProvider $dataProvider
      *
      * @throws \Xervice\Security\Business\Exception\SecurityException
      */
-    public function authenticate(string $name, AbstractDataProvider $dataProvider): void
+    public function authenticate(string $name, AuthenticatorDataProvider $dataProvider): void
     {
         $this->get($name)->authenticate($dataProvider);
     }

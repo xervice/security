@@ -1,6 +1,7 @@
 <?php
 namespace XerviceTest\Security;
 
+use DataProvider\AuthenticatorDataProvider;
 use DataProvider\SimpleCredentialsDataProvider;
 use DataProvider\TestKeyValueDataProvider;
 use Xervice\Core\Locator\Dynamic\DynamicLocator;
@@ -23,9 +24,14 @@ class IntegrationTest extends \Codeception\Test\Unit
      */
     public function testSecurityWrongDataProvider()
     {
+        $credentials = new TestKeyValueDataProvider();
+
+        $auth = new AuthenticatorDataProvider();
+        $auth->setAuthData($credentials);
+
         $this->getFacade()->authenticate(
             'test',
-            new TestKeyValueDataProvider()
+            $auth
         );
     }
 
@@ -43,9 +49,12 @@ class IntegrationTest extends \Codeception\Test\Unit
             ->setUsername('test')
             ->setPassword('unit');
 
+        $auth = new AuthenticatorDataProvider();
+        $auth->setAuthData($credentials);
+
         $this->getFacade()->authenticate(
             'test',
-            $credentials
+            $auth
         );
     }
 
@@ -61,9 +70,12 @@ class IntegrationTest extends \Codeception\Test\Unit
             ->setUsername('unit')
             ->setPassword('test');
 
+        $auth = new AuthenticatorDataProvider();
+        $auth->setAuthData($credentials);
+
         $this->getFacade()->authenticate(
             'test',
-            $credentials
+            $auth
         );
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Xervice\Security\Business\Provider;
 
-use Xervice\DataProvider\DataProvider\AbstractDataProvider;
+use DataProvider\AuthenticatorDataProvider;
 use Xervice\Security\Business\Authenticator\AuthenticatorInterface;
 
 interface SecurityProviderInterface
@@ -23,9 +23,7 @@ interface SecurityProviderInterface
 
     /**
      * @param string $name
-     * @param \Xervice\DataProvider\DataProvider\AbstractDataProvider $dataProvider
-     *
-     *
+     * @param \DataProvider\AuthenticatorDataProvider $dataProvider
      */
-    public function authenticate(string $name, AbstractDataProvider $dataProvider): void;
+    public function authenticate(string $name, AuthenticatorDataProvider $dataProvider): void;
 }

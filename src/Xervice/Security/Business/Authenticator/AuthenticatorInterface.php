@@ -4,14 +4,14 @@
 namespace Xervice\Security\Business\Authenticator;
 
 
-use Xervice\DataProvider\DataProvider\DataProviderInterface;
+use DataProvider\AuthenticatorDataProvider;
 
 interface AuthenticatorInterface
 {
     /**
-     * @param \Xervice\DataProvider\DataProvider\DataProviderInterface $dataProvider
+     * @param \DataProvider\AuthenticatorDataProvider $dataProvider
      *
      * @return void
      */
-    public function authenticate(DataProviderInterface $dataProvider): void;
+    public function authenticate(AuthenticatorDataProvider $dataProvider): void;
 }
