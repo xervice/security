@@ -1,23 +1,22 @@
 <?php
 
-namespace Xervice\Security\Business\Provider;
+namespace Xervice\Security\Business\Model\Provider;
 
 use DataProvider\AuthenticatorDataProvider;
-use Xervice\Security\Business\Authenticator\AuthenticatorInterface;
+use Xervice\Security\Business\Dependency\Authenticator\AuthenticatorInterface;
 
 interface SecurityProviderInterface
 {
     /**
      * @param string $name
-     * @param \Xervice\Security\Business\Authenticator\AuthenticatorInterface $authenticator
+     * @param \Xervice\Security\Business\Dependency\Authenticator\AuthenticatorInterface $authenticator
      */
     public function add(string $name, AuthenticatorInterface $authenticator): void;
 
     /**
      * @param string $name
      *
-     * @return \Xervice\Security\Business\Authenticator\AuthenticatorInterface
-     * @throws \Xervice\Security\Business\Exception\SecurityException
+     * @return \Xervice\Security\Business\Dependency\Authenticator\AuthenticatorInterface
      */
     public function get(string $name): AuthenticatorInterface;
 

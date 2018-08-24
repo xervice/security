@@ -6,7 +6,7 @@ namespace XerviceTest\Security\Authenticator;
 
 use DataProvider\AuthenticatorDataProvider;
 use DataProvider\SimpleCredentialsDataProvider;
-use Xervice\Security\Business\Authenticator\AuthenticatorInterface;
+use Xervice\Security\Business\Dependency\Authenticator\AuthenticatorInterface;
 use Xervice\Security\Business\Exception\SecurityException;
 
 class TestAuthenticator implements AuthenticatorInterface
@@ -22,7 +22,10 @@ class TestAuthenticator implements AuthenticatorInterface
             throw new SecurityException('Incorrect DataProvider for authenticator');
         }
 
-        if ($dataProvider->getAuthData()->getUsername() !== 'unit' && $dataProvider->getAuthData()->getPassword() !== 'test') {
+        if (
+            $dataProvider->getAuthData()->getUsername() !== 'unit'
+            && $dataProvider->getAuthData()->getPassword() !== 'test'
+        ) {
             throw new SecurityException('Authorization failed');
         }
     }

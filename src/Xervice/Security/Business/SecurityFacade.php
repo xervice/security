@@ -1,15 +1,14 @@
 <?php
 
 
-namespace Xervice\Security;
+namespace Xervice\Security\Business;
 
 
 use DataProvider\AuthenticatorDataProvider;
-use Xervice\Core\Facade\AbstractFacade;
-use Xervice\DataProvider\DataProvider\AbstractDataProvider;
+use Xervice\Core\Business\Model\Facade\AbstractFacade;
 
 /**
- * @method \Xervice\Security\SecurityFactory getFactory()
+ * @method \Xervice\Security\Business\SecurityBusinessFactory getFactory()
  */
 class SecurityFacade extends AbstractFacade
 {

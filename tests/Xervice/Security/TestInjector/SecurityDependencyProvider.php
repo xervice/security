@@ -1,9 +1,6 @@
 <?php
 
-
 namespace App\Security;
-
-
 
 use Xervice\Security\SecurityDependencyProvider as XerviceSecurityDependencyProvider;
 use XerviceTest\Security\Authenticator\TestAuthenticator;

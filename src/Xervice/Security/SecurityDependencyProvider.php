@@ -4,24 +4,23 @@
 namespace Xervice\Security;
 
 
-use Xervice\Core\Dependency\DependencyProviderInterface;
-use Xervice\Core\Dependency\Provider\AbstractProvider;
+use Xervice\Core\Business\Model\Dependency\DependencyContainerInterface;
+use Xervice\Core\Business\Model\Dependency\Provider\AbstractDependencyProvider;
 
-/**
- * @method \Xervice\Core\Locator\Locator getLocator()
- */
-class SecurityDependencyProvider extends AbstractProvider
+class SecurityDependencyProvider extends AbstractDependencyProvider
 {
     public const AUTHENTICATOR_LIST = 'authenticator.list';
 
     /**
-     * @param \Xervice\Core\Dependency\DependencyProviderInterface $dependencyProvider
+     * @param \Xervice\Core\Business\Model\Dependency\DependencyContainerInterface $container
+     *
+     * @return \Xervice\Core\Business\Model\Dependency\DependencyContainerInterface
      */
-    public function handleDependencies(DependencyProviderInterface $dependencyProvider): void
+    public function handleDependencies(DependencyContainerInterface $container): DependencyContainerInterface
     {
-        $dependencyProvider[self::AUTHENTICATOR_LIST] = function () {
-            return $this->getAuthenticatorList();
-        };
+        $container = $this->addAuthenticatorList($container);
+
+        return $container;
     }
 
     /**
@@ -34,5 +33,19 @@ class SecurityDependencyProvider extends AbstractProvider
     protected function getAuthenticatorList(): array
     {
         return [];
+    }
+
+    /**
+     * @param \Xervice\Core\Business\Model\Dependency\DependencyContainerInterface $container
+     *
+     * @return \Xervice\Core\Business\Model\Dependency\DependencyContainerInterface
+     */
+    protected function addAuthenticatorList(
+        DependencyContainerInterface $container
+    ): DependencyContainerInterface {
+        $container[self::AUTHENTICATOR_LIST] = function () {
+            return $this->getAuthenticatorList();
+        };
+        return $container;
     }
 }
