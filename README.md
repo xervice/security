@@ -4,7 +4,7 @@ Xervice: Security
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/xervice/security/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/xervice/security/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/xervice/security/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/xervice/security/?branch=master)
 
-Implement security service to xervice kernel.
+Implement security service to xervice.
 
 
 Installation
@@ -24,12 +24,7 @@ The security module is only to provide your own authentication methods. You can 
 namespace App\Security;
 
 use Xervice\Security\SecurityDependencyProvider as XerviceSecurityDependencyProvider;
-use Xervice\Core\Dependency\DependencyProviderInterface;
-use Xervice\Core\Dependency\Provider\AbstractProvider;
 
-/**
- * @method \Xervice\Core\Locator\Locator getLocator()
- */
 class SecurityDependencyProvider extends XerviceSecurityDependencyProvider
 {
     /**
@@ -42,9 +37,10 @@ class SecurityDependencyProvider extends XerviceSecurityDependencyProvider
     protected function getAuthenticatorList(): array
     {
         return [
-            'myauthenticator' => MyAuthenticator::class
+            'myauth' => MyAuthenticator::class
         ];
     }
+
 }
 ```
 
@@ -61,7 +57,7 @@ namespace App\MyModule\Business\Authenticator;
 
 use DataProvider\AuthenticatorDataProvider;
 use DataProvider\SimpleCredentialsDataProvider;
-use Xervice\Security\Business\Authenticator\AuthenticatorInterface;
+use Xervice\Security\Business\Dependency\Authenticator\AuthenticatorInterface;
 use Xervice\Security\Business\Exception\SecurityException;
 
 class MyAuthenticator implements AuthenticatorInterface
@@ -77,7 +73,10 @@ class MyAuthenticator implements AuthenticatorInterface
             throw new SecurityException('Incorrect DataProvider for authenticator');
         }
 
-        if ($dataProvider->getAuthData()->getUsername() !== 'staticusername' && $dataProvider->getAuthData()->getPassword() !== 'staticpassword') {
+        if (
+            $dataProvider->getAuthData()->getUsername() !== 'staticusername'
+            && $dataProvider->getAuthData()->getPassword() !== 'staticpassword'
+        ) {
             throw new SecurityException('Authorization failed');
         }
     }
